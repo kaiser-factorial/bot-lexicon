@@ -72,13 +72,41 @@
       flex-direction: column;
       gap: 32px;
     }
-    .chart-box h3 {
+    /* Collapsible Charts */
+    details.chart-box {
+      border-bottom: 1px solid #21262D;
+      padding-bottom: 16px;
+    }
+    details.chart-box summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: #8B949E;
+      font-weight: 700;
+      padding: 4px 0;
+      user-select: none;
+      outline: none;
+    }
+    details.chart-box summary::-webkit-details-marker { display: none; }
+    details.chart-box summary::before {
+      content: '▶';
+      font-size: 8px;
+      transition: transform 0.2s;
+      color: #444C56;
+    }
+    details[open].chart-box summary::before {
+      transform: rotate(90deg);
+    }
+    details[open].chart-box summary {
       margin-bottom: 16px;
     }
+    .title-mauk  { color: #03A6A1 !important; }
+    .title-abaci { color: #FF9D23 !important; }
+    .title-both  { color: #E63946 !important; }
     .chart-container {
       display: flex;
       flex-direction: column;
@@ -111,7 +139,7 @@
     }
     .bar-mauk { background: #03A6A1; }
     .bar-abaci { background: #FF9D23; }
-    .bar-both { background: #00E678; }
+    .bar-both { background: #E63946; }
     .bar-val {
       font-size: 9px;
       color: #C8CBD8;
@@ -193,18 +221,18 @@
 
 <main>
   <div id="sidebar">
-    <div class="chart-box">
-      <h3>MAUK Distribution</h3>
+    <details class="chart-box">
+      <summary class="title-mauk">MAUK Distribution</summary>
       <div class="chart-container" id="chart-mauk"></div>
-    </div>
-    <div class="chart-box">
-      <h3>ABACI Distribution</h3>
+    </details>
+    <details class="chart-box">
+      <summary class="title-abaci">ABACI Distribution</summary>
       <div class="chart-container" id="chart-abaci"></div>
-    </div>
-    <div class="chart-box">
-      <h3>Shared (Both) Distribution</h3>
+    </details>
+    <details class="chart-box">
+      <summary class="title-both">Shared (Both) Distribution</summary>
       <div class="chart-container" id="chart-both"></div>
-    </div>
+    </details>
   </div>
 
   <div id="content">
