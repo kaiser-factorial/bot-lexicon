@@ -148,52 +148,70 @@
     }
 
     /* Right Column: Word List */
+    /* Right Area: 3 Columns */
     #content {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: #21262D;
+      overflow: hidden;
+      gap: 1px;
+    }
+    .word-column {
       display: flex;
       flex-direction: column;
       background: #161B22;
       overflow: hidden;
     }
-    #list-header {
-      padding: 16px 24px;
+    .col-header {
+      padding: 14px 20px;
+      background: #0D1117;
       border-bottom: 1px solid #21262D;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky; top: 0; z-index: 10;
     }
-    #search-box {
-      background: #0D1117;
-      border: 1px solid #30363D;
-      color: #E6EDF3;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 13px;
-      width: 240px;
-      outline: none;
+    .col-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
     }
-    #search-box:focus { border-color: #00E678; }
+    .col-count {
+      font-size: 10px;
+      color: #8B949E;
+      font-family: 'JetBrains Mono', monospace;
+    }
     
-    #word-list {
+    .col-list {
       flex: 1;
       overflow-y: auto;
       padding: 0;
     }
     .word-row {
-      display: grid;
-      grid-template-columns: 40px 1fr 100px 100px;
-      padding: 8px 24px;
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 20px;
       border-bottom: 1px solid #21262D;
       align-items: center;
       font-size: 13px;
     }
     .word-row:hover { background: #1C2128; }
-    .dot { width: 8px; height: 8px; border-radius: 50%; }
-    .dot-mauk { background: #03A6A1; }
-    .dot-abaci { background: #FF9D23; }
-    .dot-equal { background: #00E678; }
     .word-text { font-family: 'JetBrains Mono', monospace; color: #E6EDF3; }
-    .cnt-m { color: #03A6A1; text-align: right; }
-    .cnt-a { color: #FF9D23; text-align: right; }
+    .word-val  { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8B949E; }
+    
+    .title-mauk  { color: #03A6A1; }
+    .title-abaci { color: #FF9D23; }
+    .title-both  { color: #E63946; }
+
+    #list-header-global {
+      background: #161B22;
+      padding: 12px 24px;
+      border-bottom: 1px solid #21262D;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     
     #stats-summary {
       font-size: 12px;
@@ -235,15 +253,36 @@
     </details>
   </div>
 
-  <div id="content">
-    <div id="list-header">
-      <div style="font-size:13px; color:#8B949E;">
-        Top <b id="word-count-showing">0</b> words <span id="word-total-count"></span>
+  <div id="content-wrap" style="display:flex; flex-direction:column; overflow:hidden;">
+    <div id="list-header-global">
+      <div style="font-size:12px; color:#8B949E;">
+        Top words by frequency (stop words excluded)
       </div>
-      <input type="text" id="search-box" placeholder="Search vocabulary...">
+      <input type="text" id="search-box" placeholder="Search vocabulary..." style="background:#0D1117; border:1px solid #30363D; color:#E6EDF3; padding:6px 12px; border-radius:6px; font-size:13px; width:240px; outline:none;">
     </div>
-    <div id="word-list">
-      <!-- populated by js -->
+    
+    <div id="content">
+      <div class="word-column" id="col-mauk">
+        <div class="col-header">
+          <span class="col-title title-mauk">MAUK Only</span>
+          <span class="col-count" id="count-mauk">0</span>
+        </div>
+        <div class="col-list" id="list-mauk"></div>
+      </div>
+      <div class="word-column" id="col-both">
+        <div class="col-header">
+          <span class="col-title title-both">Shared (Both)</span>
+          <span class="col-count" id="count-both">0</span>
+        </div>
+        <div class="col-list" id="list-both"></div>
+      </div>
+      <div class="word-column" id="col-abaci">
+        <div class="col-header">
+          <span class="col-title title-abaci">ABACI Only</span>
+          <span class="col-count" id="count-abaci">0</span>
+        </div>
+        <div class="col-list" id="list-abaci"></div>
+      </div>
     </div>
   </div>
 </main>
@@ -292,35 +331,48 @@ function renderChart(id, data, cls) {
 }
 
 function updateWordList(filter = '') {
-  const container = document.getElementById('word-list');
   const search = filter.toLowerCase();
   
-  let filtered = ALL_WORDS;
-  if (search) {
-    filtered = ALL_WORDS.filter(w => w.w.includes(search));
-  }
-  
-  // limit to top 10k for performance
-  const limit = 2000; 
-  const display = filtered.slice(0, limit);
-  
-  document.getElementById('word-count-showing').textContent = display.length.toLocaleString();
-  document.getElementById('word-total-count').textContent = `of ${filtered.length.toLocaleString()}`;
+  const maukList  = document.getElementById('list-mauk');
+  const bothList  = document.getElementById('list-both');
+  const abaciList = document.getElementById('list-abaci');
 
-  container.innerHTML = display.map(w => {
-    let dotClass = 'dot-equal';
-    if (w.m > w.a) dotClass = 'dot-mauk';
-    else if (w.a > w.m) dotClass = 'dot-abaci';
-    
-    return `
-      <div class="word-row">
-        <div class="dot ${dotClass}"></div>
-        <div class="word-text">${w.w}</div>
-        <div class="cnt-m">${w.m ? w.m.toLocaleString() : '—'}</div>
-        <div class="cnt-a">${w.a ? w.a.toLocaleString() : '—'}</div>
-      </div>
-    `;
-  }).join('');
+  const filterAndLimit = (type) => {
+    let pool = ALL_WORDS.filter(w => w.s === type);
+    if (search) pool = pool.filter(w => w.w.includes(search));
+    return pool;
+  };
+
+  const mPool = filterAndLimit('mo');
+  const bPool = filterAndLimit('sh');
+  const aPool = filterAndLimit('ao');
+
+  document.getElementById('count-mauk').textContent = mPool.length.toLocaleString();
+  document.getElementById('count-both').textContent = bPool.length.toLocaleString();
+  document.getElementById('count-abaci').textContent = aPool.length.toLocaleString();
+
+  const limit = 1000;
+  
+  maukList.innerHTML = mPool.slice(0, limit).map(w => `
+    <div class="word-row">
+      <span class="word-text">${w.w}</span>
+      <span class="word-val">${w.m.toLocaleString()}</span>
+    </div>
+  `).join('');
+
+  bothList.innerHTML = bPool.slice(0, limit).map(w => `
+    <div class="word-row">
+      <span class="word-text">${w.w}</span>
+      <span class="word-val">M:${w.m} A:${w.a}</span>
+    </div>
+  `).join('');
+
+  abaciList.innerHTML = aPool.slice(0, limit).map(w => `
+    <div class="word-row">
+      <span class="word-text">${w.w}</span>
+      <span class="word-val">${w.a.toLocaleString()}</span>
+    </div>
+  `).join('');
 }
 
 document.getElementById('search-box').addEventListener('input', (e) => {
