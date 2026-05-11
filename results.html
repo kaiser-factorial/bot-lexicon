@@ -7,6 +7,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    .btn {
+      background: #21262D;
+      border: 1px solid #30363D;
+      color: #C8CBD8;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .btn:hover { background: #2D333B; border-color: #444C56; }
+    .btn-vat { background: #00E678; color: #0D1117; border: none; font-weight: 600; }
+    .btn-vat:hover { background: #00C868; color: #0D1117; }
     body {
       background: #0D1117;
       color: #C8CBD8;
@@ -162,10 +177,15 @@
 <body>
 
 <div id="header">
-  <a href="index.html" class="back-btn">← Back to Visualizer</a>
-  <h1>Lexicon Results</h1>
-  <div id="stats-summary">
-    Jaccard: <b id="jaccard-val">0%</b>
+  <div style="display:flex; align-items:center; gap:20px;">
+    <a href="index.html" class="back-btn">← Back to Visualizer</a>
+    <h1>Lexicon Results</h1>
+  </div>
+  <div style="display:flex; align-items:center; gap:16px;">
+    <div id="stats-summary">
+      Jaccard: <b id="jaccard-val">0%</b>
+    </div>
+    <button class="btn btn-vat" onclick="window.location.href='https://vat.social'">Enter the VAT</button>
   </div>
 </div>
 
