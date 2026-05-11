@@ -65,11 +65,21 @@
     .btn.active { background: #00E67822; border-color: #00E678; color: #00E678; }
     .btn-vat { 
       position: fixed; top: 10px; right: 24px; z-index: 5000;
-      background: #E63946; color: #FFFFFF; border: none; font-weight: 600; 
-      box-shadow: 0 0 20px rgba(230, 57, 70, 0.3);
+      background: rgba(230, 57, 70, 0.1); 
+      color: #FF5C67; 
+      border: 1px solid #E63946; 
+      font-weight: 700; 
+      box-shadow: 0 0 15px rgba(230, 57, 70, 0.2);
       font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
-    .btn-vat:hover { background: #D62839; color: #FFFFFF; transform: scale(1.02); }
+    .btn-vat:hover { 
+      background: rgba(230, 57, 70, 0.2); 
+      color: #FF8089; 
+      transform: scale(1.02); 
+      box-shadow: 0 0 20px rgba(230, 57, 70, 0.4);
+    }
     .btn-quiet { background: transparent; border: 1px solid #30363D; color: #8B949E; }
     .btn-quiet:hover { color: #C8CBD8; border-color: #444C56; }
     .btn#btn-play { min-width: 72px; }
