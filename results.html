@@ -62,9 +62,9 @@
     }
 
     body {
-      background: #0D1117;
+      background: #080c0a;
       color: #C8CBD8;
-      font-family: 'Inter', sans-serif;
+      font-family: 'JetBrains Mono', monospace;
       height: 100vh;
       display: flex;
       flex-direction: column;
@@ -76,7 +76,7 @@
       justify-content: space-between;
       padding: 12px 24px;
       background: #0a120d;
-      border-bottom: 1px solid #14281a;
+      border-bottom: 1px solid #E63946;
       flex-shrink: 0;
     }
 
@@ -105,24 +105,25 @@
     main {
       flex: 1;
       display: grid;
-      grid-template-columns: 380px 1fr;
+      grid-template-columns: 280px 1fr;
       overflow: hidden;
     }
 
     /* Left Column: Charts */
     #sidebar {
+      width: 280px;
+      background: #0a120d;
+      border-right: 1px solid #E63946;
       padding: 24px;
-      background: #0D1117;
-      border-right: 1px solid #21262D;
-      overflow-y: auto;
       display: flex;
       flex-direction: column;
       gap: 32px;
+      overflow-y: auto;
     }
 
     /* Collapsible Charts */
     details.chart-box {
-      border-bottom: 1px solid #21262D;
+      border-bottom: 1px solid #E63946;
       padding-bottom: 16px;
     }
 
@@ -229,9 +230,10 @@
     /* Right Column: Word List */
     /* Right Area: 3 Columns */
     #content {
+      flex: 1;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      background: #21262D;
+      background: #E63946;
       overflow: hidden;
       gap: 1px;
     }
@@ -245,8 +247,8 @@
 
     .col-header {
       padding: 14px 20px;
-      background: #0D1117;
-      border-bottom: 1px solid #21262D;
+      background: #0a120d;
+      border-bottom: 1px solid #E63946;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -336,9 +338,9 @@
     }
 
     #list-header-global {
-      background: #161B22;
+      background: #0a120d;
       padding: 12px 24px;
-      border-bottom: 1px solid #21262D;
+      border-bottom: 1px solid #E63946;
       display: flex;
       justify-content: space-between;
       align-items: center;
