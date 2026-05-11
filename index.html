@@ -55,8 +55,12 @@
     }
     .btn:hover { background: #2D333B; border-color: #444C56; }
     .btn.active { background: #00E67822; border-color: #00E678; color: #00E678; }
-    .btn-vat { background: #00E678; color: #0D1117; border: none; font-weight: 600; }
-    .btn-vat:hover { background: #00C868; color: #0D1117; }
+    .btn-vat { 
+      position: fixed; top: 10px; right: 24px; z-index: 5000;
+      background: #00E678; color: #0D1117; border: none; font-weight: 600; 
+      box-shadow: 0 0 20px rgba(0, 230, 120, 0.2);
+    }
+    .btn-vat:hover { background: #00C868; color: #0D1117; transform: scale(1.02); }
     .btn-quiet { background: transparent; border: 1px solid #30363D; color: #8B949E; }
     .btn-quiet:hover { color: #C8CBD8; border-color: #444C56; }
     .btn#btn-play { min-width: 72px; }
@@ -214,9 +218,9 @@
     </div>
     <div style="display:flex; gap:8px; margin-left:12px; border-left:1px solid #30363D; padding-left:12px;">
       <button class="btn btn-quiet" onclick="window.location.href='results.html'">Results</button>
-      <button class="btn btn-vat" onclick="window.location.href='https://vat.social'">Enter the VAT</button>
     </div>
   </div>
+  <button class="btn btn-vat" onclick="window.location.href='https://vat.social'">Enter the VAT</button>
 </div>
 
 <div id="canvas-container">

@@ -20,8 +20,12 @@
       transition: background 0.15s, border-color 0.15s;
     }
     .btn:hover { background: #2D333B; border-color: #444C56; }
-    .btn-vat { background: #00E678; color: #0D1117; border: none; font-weight: 600; }
-    .btn-vat:hover { background: #00C868; color: #0D1117; }
+    .btn-vat { 
+      position: fixed; top: 10px; right: 24px; z-index: 5000;
+      background: #00E678; color: #0D1117; border: none; font-weight: 600; 
+      box-shadow: 0 0 20px rgba(0, 230, 120, 0.2);
+    }
+    .btn-vat:hover { background: #00C868; color: #0D1117; transform: scale(1.02); }
     body {
       background: #0D1117;
       color: #C8CBD8;
@@ -185,8 +189,8 @@
     <div id="stats-summary">
       Jaccard: <b id="jaccard-val">0%</b>
     </div>
-    <button class="btn btn-vat" onclick="window.location.href='https://vat.social'">Enter the VAT</button>
   </div>
+  <button class="btn btn-vat" onclick="window.location.href='https://vat.social'">Enter the VAT</button>
 </div>
 
 <main>
