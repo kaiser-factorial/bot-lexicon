@@ -176,7 +176,24 @@
       text-transform: uppercase;
       letter-spacing: 0.1em;
       font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
+    .col-toggle {
+      font-size: 9px;
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 500;
+      color: #8B949E;
+      cursor: pointer;
+      text-decoration: underline;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .col-toggle:hover { color: #C8CBD8; }
+    .col-toggle.active { color: #00E678; }
     .col-count {
       font-size: 10px;
       color: #8B949E;
@@ -264,7 +281,10 @@
     <div id="content">
       <div class="word-column" id="col-mauk">
         <div class="col-header">
-          <span class="col-title title-mauk">MAUK <span style="color:#E63946">ONLY</span></span>
+          <div class="col-title title-mauk">
+            <span id="title-text-mauk">MAUK <span style="color:#E63946">ONLY</span></span>
+            <button class="col-toggle" id="toggle-mauk" onclick="toggleMode('mauk')">Show Full</button>
+          </div>
           <span class="col-count" id="count-mauk">0</span>
         </div>
         <div class="col-list" id="list-mauk"></div>
@@ -278,7 +298,10 @@
       </div>
       <div class="word-column" id="col-abaci">
         <div class="col-header">
-          <span class="col-title title-abaci">ABACI <span style="color:#E63946">ONLY</span></span>
+          <div class="col-title title-abaci">
+            <span id="title-text-abaci">ABACI <span style="color:#E63946">ONLY</span></span>
+            <button class="col-toggle" id="toggle-abaci" onclick="toggleMode('abaci')">Show Full</button>
+          </div>
           <span class="col-count" id="count-abaci">0</span>
         </div>
         <div class="col-list" id="list-abaci"></div>
@@ -330,6 +353,22 @@ function renderChart(id, data, cls) {
   }).join('');
 }
 
+let modeMauk = 'only';
+let modeAbaci = 'only';
+
+function toggleMode(bot) {
+  if (bot === 'mauk') {
+    modeMauk = modeMauk === 'only' ? 'full' : 'only';
+    document.getElementById('toggle-mauk').textContent = modeMauk === 'only' ? 'Show Full' : 'Show Only';
+    document.getElementById('title-text-mauk').innerHTML = modeMauk === 'only' ? 'MAUK <span style="color:#E63946">ONLY</span>' : 'MAUK FULL';
+  } else {
+    modeAbaci = modeAbaci === 'only' ? 'full' : 'only';
+    document.getElementById('toggle-abaci').textContent = modeAbaci === 'only' ? 'Show Full' : 'Show Only';
+    document.getElementById('title-text-abaci').innerHTML = modeAbaci === 'only' ? 'ABACI <span style="color:#E63946">ONLY</span>' : 'ABACI FULL';
+  }
+  updateWordList(document.getElementById('search-box').value);
+}
+
 function updateWordList(filter = '') {
   const search = filter.toLowerCase();
   
@@ -337,15 +376,26 @@ function updateWordList(filter = '') {
   const bothList  = document.getElementById('list-both');
   const abaciList = document.getElementById('list-abaci');
 
-  const filterAndLimit = (type) => {
-    let pool = ALL_WORDS.filter(w => w.s === type);
+  const filterAndSort = (type, mode) => {
+    let pool;
+    if (type === 'mo') {
+      pool = mode === 'only' ? ALL_WORDS.filter(w => w.s === 'mo') : ALL_WORDS.filter(w => w.s === 'mo' || w.s === 'sh');
+      pool.sort((a, b) => b.m - a.m);
+    } else if (type === 'ao') {
+      pool = mode === 'only' ? ALL_WORDS.filter(w => w.s === 'ao') : ALL_WORDS.filter(w => w.s === 'ao' || w.s === 'sh');
+      pool.sort((a, b) => b.a - a.a);
+    } else {
+      pool = ALL_WORDS.filter(w => w.s === 'sh');
+      pool.sort((a, b) => (b.m + b.a) - (a.m + a.a));
+    }
+    
     if (search) pool = pool.filter(w => w.w.includes(search));
     return pool;
   };
 
-  const mPool = filterAndLimit('mo');
-  const bPool = filterAndLimit('sh');
-  const aPool = filterAndLimit('ao');
+  const mPool = filterAndSort('mo', modeMauk);
+  const bPool = filterAndSort('sh');
+  const aPool = filterAndSort('ao', modeAbaci);
 
   document.getElementById('count-mauk').textContent = mPool.length.toLocaleString();
   document.getElementById('count-both').textContent = bPool.length.toLocaleString();
