@@ -22,8 +22,8 @@
       align-items: flex-start;
       justify-content: space-between;
       padding: 12px 24px;
-      background: #161B22;
-      border-bottom: 1px solid #21262D;
+      background: #0a120d;
+      border-bottom: 1px solid #14281a;
       flex-shrink: 0;
     }
     .controls {
@@ -619,7 +619,7 @@ const sketch = (p) => {
 
     // Drawing
     p.noStroke();
-    p.fill(15, 19, 28); p.rect(0, 0, INPUT_W, H);
+    p.fill(10, 15, 12); p.rect(0, 0, INPUT_W, H);
     p.fill(...C_ZONE); p.rect(INPUT_W, 0, MAP_W, H);
     p.fill(...C_BG); p.rect(SHUF_X, 0, SHUF_W, H);
     p.fill(...C_ZONE); p.rect(RED_X, 0, RED_W, H);
