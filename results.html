@@ -161,6 +161,10 @@
       margin-bottom: 16px;
     }
 
+    details.chart-box.mauk summary::before { color: #03A6A1; }
+    details.chart-box.abaci summary::before { color: #FF9D23; }
+    details.chart-box.shared summary::before { color: #C9333E; }
+
     .title-mauk {
       color: #03A6A1 !important;
     }
@@ -385,15 +389,15 @@
 
   <main>
     <div id="sidebar">
-      <details class="chart-box">
+      <details class="chart-box mauk">
         <summary class="title-mauk">MAUK Distribution</summary>
         <div class="chart-container" id="chart-mauk"></div>
       </details>
-      <details class="chart-box">
+      <details class="chart-box abaci">
         <summary class="title-abaci">ABACI Distribution</summary>
         <div class="chart-container" id="chart-abaci"></div>
       </details>
-      <details class="chart-box">
+      <details class="chart-box shared">
         <summary class="title-both">SHARED <span style="color:#C9333E">(BOTH)</span> Distribution</summary>
         <div class="chart-container" id="chart-both"></div>
       </details>
