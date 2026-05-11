@@ -181,12 +181,10 @@
 <body>
 
 <div id="header">
-  <div style="display:flex; align-items:center; gap:20px;">
+  <div style="display:flex; align-items:center; gap:24px;">
     <a href="index.html" class="back-btn">← Back to Visualizer</a>
     <h1>Lexicon Results</h1>
-  </div>
-  <div style="display:flex; align-items:center; gap:16px;">
-    <div id="stats-summary">
+    <div id="stats-summary" style="margin-left: 8px; border-left: 1px solid #30363D; padding-left: 20px;">
       Jaccard: <b id="jaccard-val">0%</b>
     </div>
   </div>
@@ -200,16 +198,12 @@
       <div class="chart-container" id="chart-mauk"></div>
     </div>
     <div class="chart-box">
-      <h3>Shared (Both) Distribution</h3>
-      <div class="chart-container" id="chart-both"></div>
-    </div>
-    <div class="chart-box">
       <h3>ABACI Distribution</h3>
       <div class="chart-container" id="chart-abaci"></div>
     </div>
     <div class="chart-box">
-      <h3>Morphology</h3>
-      <img src="assets/hapax_morphology.png" alt="Morphology" style="width:100%; border-radius:8px; opacity:0.8;">
+      <h3>Shared (Both) Distribution</h3>
+      <div class="chart-container" id="chart-both"></div>
     </div>
   </div>
 
