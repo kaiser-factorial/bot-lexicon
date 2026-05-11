@@ -1,0 +1,198 @@
+{
+  "generated": "2026-05-11",
+  "jaccard": 0.1754,
+  "mauk_vocab": 34993,
+  "abaci_vocab": 42971,
+  "shared": 11633,
+  "mauk_only": 23360,
+  "abaci_only": 31338,
+  "total_unique": 66331,
+  "distributions": {
+    "mauk": [
+      {
+        "label": "1",
+        "unique": 22196,
+        "total": 22196
+      },
+      {
+        "label": "2",
+        "unique": 3721,
+        "total": 7442
+      },
+      {
+        "label": "3\u20135",
+        "unique": 3633,
+        "total": 13502
+      },
+      {
+        "label": "6\u201310",
+        "unique": 1953,
+        "total": 14800
+      },
+      {
+        "label": "11\u201325",
+        "unique": 1725,
+        "total": 28315
+      },
+      {
+        "label": "26\u201350",
+        "unique": 776,
+        "total": 27883
+      },
+      {
+        "label": "51\u2013100",
+        "unique": 473,
+        "total": 33378
+      },
+      {
+        "label": "101\u2013250",
+        "unique": 317,
+        "total": 47753
+      },
+      {
+        "label": "251\u2013500",
+        "unique": 114,
+        "total": 39183
+      },
+      {
+        "label": "501\u20131k",
+        "unique": 44,
+        "total": 31771
+      },
+      {
+        "label": "1k\u20135k",
+        "unique": 41,
+        "total": 79239
+      },
+      {
+        "label": "5k+",
+        "unique": 0,
+        "total": 0
+      }
+    ],
+    "abaci": [
+      {
+        "label": "1",
+        "unique": 29108,
+        "total": 29108
+      },
+      {
+        "label": "2",
+        "unique": 3941,
+        "total": 7882
+      },
+      {
+        "label": "3\u20135",
+        "unique": 3500,
+        "total": 12926
+      },
+      {
+        "label": "6\u201310",
+        "unique": 1737,
+        "total": 13275
+      },
+      {
+        "label": "11\u201325",
+        "unique": 1575,
+        "total": 25997
+      },
+      {
+        "label": "26\u201350",
+        "unique": 1077,
+        "total": 38740
+      },
+      {
+        "label": "51\u2013100",
+        "unique": 789,
+        "total": 56046
+      },
+      {
+        "label": "101\u2013250",
+        "unique": 666,
+        "total": 102995
+      },
+      {
+        "label": "251\u2013500",
+        "unique": 284,
+        "total": 100215
+      },
+      {
+        "label": "501\u20131k",
+        "unique": 159,
+        "total": 108074
+      },
+      {
+        "label": "1k\u20135k",
+        "unique": 119,
+        "total": 232203
+      },
+      {
+        "label": "5k+",
+        "unique": 16,
+        "total": 107821
+      }
+    ],
+    "both": [
+      {
+        "label": "1",
+        "unique": 0,
+        "total": 0
+      },
+      {
+        "label": "2",
+        "unique": 1665,
+        "total": 3330
+      },
+      {
+        "label": "3\u20135",
+        "unique": 2625,
+        "total": 9927
+      },
+      {
+        "label": "6\u201310",
+        "unique": 1803,
+        "total": 13852
+      },
+      {
+        "label": "11\u201325",
+        "unique": 1852,
+        "total": 30555
+      },
+      {
+        "label": "26\u201350",
+        "unique": 1207,
+        "total": 43648
+      },
+      {
+        "label": "51\u2013100",
+        "unique": 922,
+        "total": 65587
+      },
+      {
+        "label": "101\u2013250",
+        "unique": 834,
+        "total": 128631
+      },
+      {
+        "label": "251\u2013500",
+        "unique": 350,
+        "total": 122640
+      },
+      {
+        "label": "501\u20131k",
+        "unique": 204,
+        "total": 140180
+      },
+      {
+        "label": "1k\u20135k",
+        "unique": 147,
+        "total": 302582
+      },
+      {
+        "label": "5k+",
+        "unique": 24,
+        "total": 191961
+      }
+    ]
+  }
+}
