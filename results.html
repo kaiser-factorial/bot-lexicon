@@ -363,7 +363,10 @@ function updateWordList(filter = '') {
   bothList.innerHTML = bPool.slice(0, limit).map(w => `
     <div class="word-row">
       <span class="word-text">${w.w}</span>
-      <span class="word-val">M:${w.m} A:${w.a}</span>
+      <span class="word-val">
+        <span class="title-mauk">M:${w.m}</span> 
+        <span class="title-abaci">A:${w.a}</span>
+      </span>
     </div>
   `).join('');
 
