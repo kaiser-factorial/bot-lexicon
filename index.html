@@ -19,30 +19,36 @@
     }
     #header {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 16px 24px;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 12px 24px;
       background: #161B22;
       border-bottom: 1px solid #21262D;
       flex-shrink: 0;
+    }
+    .controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+    }
+    .controls-row {
+      display: flex;
+      align-items: center;
       gap: 16px;
     }
     #header h1 {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
       color: #E6EDF3;
       font-family: 'JetBrains Mono', monospace;
       letter-spacing: -0.02em;
       white-space: nowrap;
+      margin-top: 4px;
     }
     #header h1 span.mauk  { color: #03A6A1; }
     #header h1 span.abaci { color: #FF9D23; }
-    .controls {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
     .btn {
       background: #21262D;
       border: 1px solid #30363D;
@@ -198,31 +204,41 @@
 <body>
 
 <div id="header">
-  <h1>MapReduce — <span class="mauk">MAUK</span> × <span class="abaci">ABACI</span> Lexicon</h1>
+  <div style="flex: 0 0 300px;">
+    <h1>MapReduce — <span class="mauk">MAUK</span> × <span class="abaci">ABACI</span> Lexicon</h1>
+  </div>
+  
   <div class="controls">
-    <button class="btn" id="btn-play">⏸ Pause</button>
-    <button class="btn" id="btn-reset">↺ Reset</button>
-    <button class="btn" id="btn-bucket">⬡ Bucket Mode</button>
-    <div class="filter-group">
-      <button class="filter-btn active-all" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="shared">Shared</button>
-      <button class="filter-btn" data-filter="mauk_only">MAUK</button>
-      <button class="filter-btn" data-filter="abaci_only">ABACI</button>
+    <div class="controls-row">
+      <button class="btn" id="btn-play">⏸ Pause</button>
+      <button class="btn" id="btn-reset">↺ Reset</button>
+      <button class="btn" id="btn-bucket">⬡ Bucket Mode</button>
+      <div class="filter-group">
+        <button class="filter-btn active-all" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="shared">Shared</button>
+        <button class="filter-btn" data-filter="mauk_only">MAUK</button>
+        <button class="filter-btn" data-filter="abaci_only">ABACI</button>
+      </div>
+      <div class="speed-wrap">
+        <span>Speed</span>
+        <input type="range" id="speed-slider" min="0.3" max="8" step="0.1" value="2.5">
+        <span id="speed-label">2.5×</span>
+      </div>
     </div>
-    <div class="speed-wrap">
-      <span>Speed</span>
-      <input type="range" id="speed-slider" min="0.3" max="8" step="0.1" value="2.5">
-      <span id="speed-label">2.5×</span>
-    </div>
-    <div class="stats">
-      <span>Map outputs: <b id="stat-mapped">0</b></span>
-      <span>Unique keys reduced: <b id="stat-reduced">0</b></span>
-      <span>Queue: <b id="stat-queue">0</b></span>
-    </div>
-    <div style="display:flex; gap:8px; margin-left:12px; border-left:1px solid #30363D; padding-left:12px;">
-      <button class="btn btn-quiet" onclick="window.location.href='results.html'">Results</button>
+    <div class="controls-row">
+      <div class="stats">
+        <span>Map outputs: <b id="stat-mapped">0</b></span>
+        <span>Unique keys reduced: <b id="stat-reduced">0</b></span>
+        <span>Queue: <b id="stat-queue">0</b></span>
+      </div>
+      <div style="display:flex; gap:8px; margin-left:12px; border-left:1px solid #30363D; padding-left:12px;">
+        <button class="btn btn-quiet" onclick="window.location.href='results.html'">Results</button>
+      </div>
     </div>
   </div>
+
+  <div style="flex: 0 0 300px;"></div> <!-- Spacer to center the controls -->
+  
   <button class="btn btn-vat" onclick="window.location.href='https://vat.social'">Enter the VAT</button>
 </div>
 
