@@ -96,7 +96,7 @@
       transition: all 0.15s;
     }
     .filter-btn:hover { color: #C8CBD8; border-color: #444C56; }
-    .filter-btn.active-all    { background: rgba(201, 51, 62, 0.15); border-color: #C9333E; color: #C9333E; }
+    .filter-btn.active-all    { background: rgba(0, 230, 120, 0.15); border-color: #00E678; color: #00E678; }
     .filter-btn.active-mauk   { background:#03A6A122; border-color:#03A6A1; color:#03A6A1; }
     .filter-btn.active-abaci  { background:#FF9D2322; border-color:#FF9D23; color:#FF9D23; }
     .filter-btn.active-shared { background: rgba(201, 51, 62, 0.15); border-color: #C9333E; color: #C9333E; }
@@ -641,7 +641,7 @@ const sketch = (p) => {
     }
 
     // Input node
-    const [ir, ig, ib] = C_EQUAL;
+    const [ir, ig, ib] = [230, 57, 70];
     p.fill(ir, ig, ib, 30); p.stroke(ir, ig, ib, 150);
     p.rect(INPUT_W/2-30, H/2-40, 60, 80, 10);
     p.noStroke(); p.fill(ir, ig, ib); p.textAlign(p.CENTER, p.CENTER);
