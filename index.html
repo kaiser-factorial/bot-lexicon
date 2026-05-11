@@ -62,7 +62,7 @@
       transition: background 0.15s, border-color 0.15s;
     }
     .btn:hover { background: #2D333B; border-color: #444C56; }
-    .btn.active { background: #00E67822; border-color: #00E678; color: #00E678; }
+    .btn.active { background: rgba(201, 51, 62, 0.15); border-color: #C9333E; color: #C9333E; }
     .btn-vat { 
       position: fixed; top: 10px; right: 24px; z-index: 5000;
       background: rgba(230, 57, 70, 0.1); 
@@ -96,10 +96,10 @@
       transition: all 0.15s;
     }
     .filter-btn:hover { color: #C8CBD8; border-color: #444C56; }
-    .filter-btn.active-all   { background:#00E67822; border-color:#00E678; color:#00E678; }
-    .filter-btn.active-mauk  { background:#03A6A122; border-color:#03A6A1; color:#03A6A1; }
-    .filter-btn.active-abaci { background:#FF9D2322; border-color:#FF9D23; color:#FF9D23; }
-    .filter-btn.active-shared{ background:#E6394622; border-color:#E63946; color:#E63946; }
+    .filter-btn.active-all    { background: rgba(201, 51, 62, 0.15); border-color: #C9333E; color: #C9333E; }
+    .filter-btn.active-mauk   { background:#03A6A122; border-color:#03A6A1; color:#03A6A1; }
+    .filter-btn.active-abaci  { background:#FF9D2322; border-color:#FF9D23; color:#FF9D23; }
+    .filter-btn.active-shared { background: rgba(201, 51, 62, 0.15); border-color: #C9333E; color: #C9333E; }
     .speed-wrap {
       display: flex;
       align-items: center;
@@ -119,7 +119,7 @@
       -webkit-appearance: none;
       width: 14px; height: 14px;
       border-radius: 50%;
-      background: #00E678;
+      background: #C9333E;
       cursor: pointer;
     }
     .stats {
@@ -421,7 +421,7 @@ const sketch = (p) => {
   const C_MAUK     = [3,   166, 161];
   const C_ABACI    = [255, 157, 35 ];
   const C_SHARED   = [201, 51,  62 ]; 
-  const C_EQUAL    = [0,   230, 120]; 
+  const C_EQUAL    = [201, 51,  62 ]; 
   const C_TEXT_DIM = [201, 51,  62 ];
   const C_TEXT     = [200, 205, 220];
 
@@ -658,7 +658,10 @@ const sketch = (p) => {
 
     // Reducer list
     p.textAlign(p.LEFT, p.TOP); p.fill(...C_TEXT_DIM);
-    p.text('word', RED_X+10, 30); p.textAlign(p.RIGHT); p.text('M   A', RED_X+RED_W-10, 30);
+    p.text('word', RED_X+10, 30); 
+    p.textAlign(p.RIGHT); 
+    p.text('M', RED_X+RED_W-45, 30); 
+    p.text('A', RED_X+RED_W-15, 30);
     simRecent.forEach((r, i) => {
       const y = 50 + i * 20;
       const col = dominantColor(r.mauk, r.abaci);
