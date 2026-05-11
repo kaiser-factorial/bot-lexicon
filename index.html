@@ -45,7 +45,7 @@
       font-family: 'JetBrains Mono', monospace;
       letter-spacing: -0.02em;
       white-space: nowrap;
-      margin-top: 4px;
+      margin-top: 11px;
     }
     #header h1 span.mauk  { color: #03A6A1; }
     #header h1 span.abaci { color: #FF9D23; }
@@ -244,6 +244,15 @@
       <div style="display:flex; gap:8px; margin-left:12px; border-left:1px solid #30363D; padding-left:12px;">
         <button class="btn btn-quiet" onclick="window.location.href='results.html'">Results</button>
       </div>
+      <div style="display:flex; align-items:center; gap:8px; border-left:1px solid #30363D; padding-left:12px; margin-left:12px;">
+        <span style="font-size:11px; color:#8B949E;">Limit:</span>
+        <select id="limit-select" style="background:#0D1117; border:1px solid #30363D; color:#E6EDF3; font-size:11px; border-radius:4px; padding:2px 4px; outline:none; cursor:pointer;">
+          <option value="all" selected>All</option>
+          <option value="30000">30k</option>
+          <option value="10000">10k</option>
+          <option value="1000">1k</option>
+        </select>
+      </div>
     </div>
   </div>
 
@@ -334,6 +343,8 @@ speedSlider.addEventListener('input', () => {
   document.getElementById('speed-label').textContent = speedMult.toFixed(1) + '×';
 });
 
+document.getElementById('limit-select').addEventListener('change', () => { resetSim(); hideModal(); });
+
 // ── Simulation state ─────────────────────────────────────────────────────────
 let simParticles  = [];
 let simQueue      = [];
@@ -345,13 +356,13 @@ let emitTimer     = 0;
 const EMIT_MS     = 100; // Faster for the big dataset
 
 function resetSim() {
-  simParticles     = [];
-  simReducer       = {};
-  simRecent        = [];
-  simMapped        = 0;
-  simReduced       = 0;
-  emitTimer        = 0;
-  laneParkedCounts = {};
+  simParticles      = [];
+  simReducer        = {};
+  simRecent         = [];
+  simMapped         = 0;
+  simReduced        = 0;
+  emitTimer         = 0;
+  laneParkedCounts  = {};
 
   let pool = ALL_WORDS.filter(w => {
     if (filterMode === 'all') return true;
@@ -360,6 +371,12 @@ function resetSim() {
     if (filterMode === 'abaci_only') return w.s === 'ao';
     return true;
   });
+  
+  // Apply limit
+  const limit = document.getElementById('limit-select').value;
+  if (limit !== 'all') {
+    pool = pool.slice(0, parseInt(limit));
+  }
   
   // Random shuffle
   for (let i = pool.length - 1; i > 0; i--) {
