@@ -663,7 +663,10 @@ const sketch = (p) => {
       const y = 50 + i * 20;
       const col = dominantColor(r.mauk, r.abaci);
       p.fill(...col); p.textAlign(p.LEFT); p.text(r.word, RED_X+15, y);
-      p.fill(...C_TEXT_DIM); p.textAlign(p.RIGHT); p.text(`${r.mauk}  ${r.abaci}`, RED_X+RED_W-15, y);
+      
+      p.textAlign(p.RIGHT);
+      p.fill(...C_ABACI); p.text(r.abaci, RED_X+RED_W-15, y);
+      p.fill(...C_MAUK); p.text(r.mauk, RED_X+RED_W-45, y);
     });
   };
 };
